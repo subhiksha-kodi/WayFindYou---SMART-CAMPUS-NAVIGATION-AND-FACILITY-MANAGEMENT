@@ -1,0 +1,184 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { RoleProvider, useRole } from './context/RoleContext';
+import { ToastProvider } from './context/ToastContext';
+import { SubstitutionProvider } from './context/SubstitutionContext';
+import { AdminProvider } from './context/AdminContext';
+import { StudentProvider } from './context/StudentContext';
+
+// Core Student & Public Pages
+import { LandingPage } from './pages/LandingPage';
+import { HomeDashboard } from './pages/HomeDashboard';
+import { CampusMapPage } from './pages/CampusMapPage';
+import { FacilityLocatorPage } from './pages/FacilityLocatorPage';
+import { VoiceNavPage } from './pages/VoiceNavPage';
+import { IBBlock } from './pages/IBBlock';
+import { ASBlock } from './pages/ASBlock';
+import { SFBlock } from './pages/SFBlock';
+import { StudentSOSPage } from './pages/student/StudentSOSPage';
+import {
+  LoginPage,
+  RegisterPage,
+  OTPPage,
+  ForgotPasswordPage
+} from './pages/AuthenticationPages';
+import {
+  NoticesPage,
+  ComplaintsPage,
+  VisitorPortalPage,
+  EmergencyPage,
+  ProfileSettingsPage
+} from './pages/CampusServicesPages';
+
+// Student Module Pages
+import { StudentLogin } from './pages/student/StudentLogin';
+import { StudentDashboard } from './pages/student/StudentDashboard';
+import { StudentProfile } from './pages/student/StudentProfile';
+import { ComplaintPage } from './pages/student/ComplaintPage';
+import { FeedbackPage } from './pages/student/FeedbackPage';
+import { StudentNoticesPage } from './pages/student/StudentNoticesPage';
+import { StudentCafeteriaPage } from './pages/student/StudentCafeteriaPage';
+import { NotificationPage } from './pages/student/NotificationPage';
+import { StudentSettingsPage } from './pages/student/StudentSettingsPage';
+
+// Faculty Module Dedicated Pages
+import { FacultyLoginPage } from './pages/faculty/FacultyLoginPage';
+import { FacultyDashboardPage } from './pages/faculty/FacultyDashboardPage';
+import { FacultyCampusMapPage } from './pages/faculty/FacultyCampusMapPage';
+import { FacultyNoticesPage } from './pages/faculty/FacultyNoticesPage';
+import { FacultyEventsPage } from './pages/faculty/FacultyEventsPage';
+import { FacultyNotificationsPage } from './pages/faculty/FacultyNotificationsPage';
+import { FacultyProfilePage } from './pages/faculty/FacultyProfilePage';
+
+// Admin Portal 1-to-1 Dedicated Control Pages
+import { AdminOperationsPage } from './pages/admin/AdminOperationsPage';
+import { AdminLoginPage } from './pages/admin/AdminLoginPage';
+import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
+import { AdminUserManagementPage } from './pages/admin/AdminUserManagementPage';
+import { AdminFacultyManagementPage } from './pages/admin/AdminFacultyManagementPage';
+import { AdminStudentManagementPage } from './pages/admin/AdminStudentManagementPage';
+import { AdminFacilityManagementPage } from './pages/admin/AdminFacilityManagementPage';
+import { AdminCampusMapPage } from './pages/admin/AdminCampusMapPage';
+import { AdminEventsManagementPage } from './pages/admin/AdminEventsManagementPage';
+import { AdminNoticesManagementPage } from './pages/admin/AdminNoticesManagementPage';
+import { AdminVisitorManagementPage } from './pages/admin/AdminVisitorManagementPage';
+import { AdminNotificationsPage } from './pages/admin/AdminNotificationsPage';
+import { AdminComplaintsMonitoringPage } from './pages/admin/AdminComplaintsMonitoringPage';
+import { AdminFeedbackPage } from './pages/admin/AdminFeedbackPage';
+import { AdminProfilePage } from './pages/admin/AdminProfilePage';
+import { AdminRouteGuard } from './components/admin/AdminRouteGuard';
+import { FacultyRouteGuard } from './components/faculty/FacultyRouteGuard';
+
+function AppRoutes() {
+  const { activeRole } = useRole();
+
+  return (
+    <Routes>
+      {/* Public Landing */}
+      <Route path="/" element={<LandingPage />} />
+
+      {/* Main Authentication Suite */}
+      <Route path="/login" element={
+        activeRole === 'admin' ? <Navigate to="/admin/dashboard" replace /> :
+        activeRole === 'faculty' ? <Navigate to="/faculty/dashboard" replace /> :
+        activeRole === 'student' ? <Navigate to="/student/dashboard" replace /> :
+        activeRole === 'visitor' ? <Navigate to="/visitors" replace /> :
+        <LoginPage />
+      } />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/otp" element={<OTPPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+
+      {/* Student / Visitor Core Modules */}
+      <Route path="/home" element={
+        activeRole === 'admin' ? <Navigate to="/admin/dashboard" replace /> :
+        activeRole === 'faculty' ? <Navigate to="/faculty/dashboard" replace /> :
+        activeRole === 'student' ? <StudentDashboard /> :
+        <HomeDashboard />
+      } />
+      <Route path="/map" element={<CampusMapPage />} />
+      <Route path="/facilities" element={<FacilityLocatorPage />} />
+      <Route path="/voice-navigation" element={<VoiceNavPage />} />
+
+      {/* General Campus Services */}
+      <Route path="/notices" element={activeRole === 'student' ? <StudentNoticesPage /> : <NoticesPage />} />
+      <Route path="/complaints" element={activeRole === 'student' ? <ComplaintPage /> : <ComplaintsPage />} />
+      <Route path="/visitors" element={<VisitorPortalPage />} />
+      <Route path="/emergency" element={activeRole === 'student' ? <StudentSOSPage /> : <EmergencyPage />} />
+      <Route path="/profile" element={activeRole === 'admin' ? <AdminRouteGuard><AdminProfilePage /></AdminRouteGuard> : activeRole === 'faculty' ? <FacultyRouteGuard><FacultyProfilePage /></FacultyRouteGuard> : activeRole === 'student' ? <StudentProfile /> : <ProfileSettingsPage />} />
+      <Route path="/settings" element={activeRole === 'admin' ? <Navigate to="/admin/dashboard" replace /> : activeRole === 'student' ? <StudentSettingsPage /> : <ProfileSettingsPage />} />
+
+      {/* Dedicated Student Module Routes */}
+      <Route path="/student/login" element={<StudentLogin />} />
+      <Route path="/student/dashboard" element={activeRole === 'admin' ? <Navigate to="/admin/dashboard" replace /> : activeRole === 'faculty' ? <Navigate to="/faculty/dashboard" replace /> : <StudentDashboard />} />
+      <Route path="/student/profile" element={<StudentProfile />} />
+      <Route path="/student/complaints" element={<ComplaintPage />} />
+      <Route path="/student/feedback" element={<FeedbackPage />} />
+      <Route path="/student/notices" element={<StudentNoticesPage />} />
+      <Route path="/student/cafeteria" element={<StudentCafeteriaPage />} />
+      <Route path="/student/notifications" element={<NotificationPage />} />
+      <Route path="/student/settings" element={<StudentSettingsPage />} />
+
+      {/* Dedicated Faculty Module Protected Routes */}
+      <Route path="/faculty/login" element={<FacultyLoginPage />} />
+      <Route path="/faculty/dashboard" element={<FacultyRouteGuard><FacultyDashboardPage /></FacultyRouteGuard>} />
+      <Route path="/faculty/map" element={<FacultyRouteGuard><FacultyCampusMapPage /></FacultyRouteGuard>} />
+      <Route path="/faculty/notices" element={<FacultyRouteGuard><FacultyNoticesPage /></FacultyRouteGuard>} />
+      <Route path="/faculty/events" element={<FacultyRouteGuard><FacultyEventsPage /></FacultyRouteGuard>} />
+      <Route path="/faculty/notifications" element={<FacultyRouteGuard><FacultyNotificationsPage /></FacultyRouteGuard>} />
+      <Route path="/faculty/profile" element={<FacultyRouteGuard><FacultyProfilePage /></FacultyRouteGuard>} />
+
+      {/* 1-to-1 Admin Portal Dedicated Pages */}
+      <Route path="/admin/login" element={<AdminLoginPage />} />
+      <Route path="/admin" element={<AdminRouteGuard><AdminDashboardPage /></AdminRouteGuard>} />
+      <Route path="/admin/dashboard" element={<AdminRouteGuard><AdminDashboardPage /></AdminRouteGuard>} />
+      <Route path="/admin/users" element={<AdminRouteGuard><AdminUserManagementPage /></AdminRouteGuard>} />
+      <Route path="/admin/faculty" element={<AdminRouteGuard><AdminFacultyManagementPage /></AdminRouteGuard>} />
+      <Route path="/admin/students" element={<AdminRouteGuard><AdminStudentManagementPage /></AdminRouteGuard>} />
+      <Route path="/admin/facilities" element={<AdminRouteGuard><AdminFacilityManagementPage /></AdminRouteGuard>} />
+      <Route path="/admin/map" element={<AdminRouteGuard><AdminCampusMapPage /></AdminRouteGuard>} />
+      <Route path="/admin/routes" element={<AdminRouteGuard><AdminCampusMapPage /></AdminRouteGuard>} />
+      <Route path="/admin/events" element={<AdminRouteGuard><AdminEventsManagementPage /></AdminRouteGuard>} />
+      <Route path="/admin/notices" element={<AdminRouteGuard><AdminNoticesManagementPage /></AdminRouteGuard>} />
+      <Route path="/admin/visitors" element={<AdminRouteGuard><AdminVisitorManagementPage /></AdminRouteGuard>} />
+      <Route path="/admin/notifications" element={<AdminRouteGuard><AdminNotificationsPage /></AdminRouteGuard>} />
+      <Route path="/admin/complaints" element={<AdminRouteGuard><AdminComplaintsMonitoringPage /></AdminRouteGuard>} />
+      <Route path="/admin/issues" element={<AdminRouteGuard><AdminComplaintsMonitoringPage /></AdminRouteGuard>} />
+      <Route path="/admin/feedback" element={<AdminRouteGuard><AdminFeedbackPage /></AdminRouteGuard>} />
+      <Route path="/admin/profile" element={<AdminRouteGuard><AdminProfilePage /></AdminRouteGuard>} />
+      <Route path="/admin/operations" element={<AdminRouteGuard><AdminOperationsPage /></AdminRouteGuard>} />
+
+      {/* 3D Interactive Building Block Viewers & Emergency SOS */}
+      <Route path="/as" element={<ASBlock />} />
+      <Route path="/as-block" element={<ASBlock />} />
+      <Route path="/ib" element={<IBBlock />} />
+      <Route path="/ib-block" element={<IBBlock />} />
+      <Route path="/sf" element={<SFBlock />} />
+      <Route path="/sf-block" element={<SFBlock />} />
+      <Route path="/student/emergency" element={<StudentSOSPage />} />
+
+      {/* Catch-all Fallback Redirect */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
+export function App() {
+  return (
+    <RoleProvider>
+      <ToastProvider>
+        <SubstitutionProvider>
+          <AdminProvider>
+            <StudentProvider>
+              <Router>
+                <AppRoutes />
+              </Router>
+            </StudentProvider>
+          </AdminProvider>
+        </SubstitutionProvider>
+      </ToastProvider>
+    </RoleProvider>
+  );
+}
+
+export default App;
