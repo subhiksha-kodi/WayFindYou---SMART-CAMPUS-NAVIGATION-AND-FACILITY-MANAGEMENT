@@ -17,164 +17,6 @@ export const INITIAL_FACULTY_PROFILE = {
   coordinates: { lat: 12.9718, lng: 77.5950 }
 };
 
-export const FACULTY_TIMETABLE = [
-  {
-    id: 'tt_1',
-    day: 'Monday',
-    subject: 'Database Management Systems',
-    subject_code: 'CS301',
-    class_name: 'CSE - III Year (Sec A)',
-    building: 'Sunflower Block',
-    floor: 3,
-    room: 'SF303',
-    start_time: '09:00 AM',
-    end_time: '10:00 AM',
-    status: 'Scheduled',
-    lat: 12.9716,
-    lng: 77.5946
-  },
-  {
-    id: 'tt_2',
-    day: 'Monday',
-    subject: 'Operating Systems',
-    subject_code: 'CS304',
-    class_name: 'CSE - III Year (Sec B)',
-    building: 'Mechanical Block',
-    floor: 2,
-    room: 'MB204',
-    start_time: '10:00 AM',
-    end_time: '11:00 AM',
-    status: 'Scheduled',
-    lat: 12.9720,
-    lng: 77.5962
-  },
-  {
-    id: 'tt_3',
-    day: 'Monday',
-    subject: 'DBMS Advanced Laboratory',
-    subject_code: 'CS303L',
-    class_name: 'CSE - III Year (Sec A)',
-    building: 'AS Block',
-    floor: 3,
-    room: 'AS303 (AI Lab)',
-    start_time: '02:00 PM',
-    end_time: '04:00 PM',
-    status: 'Scheduled',
-    lat: 12.9716,
-    lng: 77.5946
-  },
-  {
-    id: 'tt_4',
-    day: 'Tuesday',
-    subject: 'Database Management Systems',
-    subject_code: 'CS301',
-    class_name: 'CSE - III Year (Sec A)',
-    building: 'Sunflower Block',
-    floor: 3,
-    room: 'SF303',
-    start_time: '10:00 AM',
-    end_time: '11:00 AM',
-    status: 'Scheduled',
-    lat: 12.9716,
-    lng: 77.5946
-  },
-  {
-    id: 'tt_5',
-    day: 'Wednesday',
-    subject: 'Operating Systems',
-    subject_code: 'CS304',
-    class_name: 'CSE - III Year (Sec B)',
-    building: 'Mechanical Block',
-    floor: 2,
-    room: 'MB204',
-    start_time: '11:00 AM',
-    end_time: '12:00 PM',
-    status: 'Scheduled',
-    lat: 12.9720,
-    lng: 77.5962
-  },
-  {
-    id: 'tt_6',
-    day: 'Thursday',
-    subject: 'Database Management Systems',
-    subject_code: 'CS301',
-    class_name: 'CSE - III Year (Sec A)',
-    building: 'IB Block',
-    floor: 3,
-    room: 'IB303',
-    start_time: '09:00 AM',
-    end_time: '10:00 AM',
-    status: 'Scheduled',
-    lat: 12.9716,
-    lng: 77.5946
-  },
-  {
-    id: 'tt_7',
-    day: 'Friday',
-    subject: 'Operating Systems',
-    subject_code: 'CS304',
-    class_name: 'CSE - III Year (Sec B)',
-    building: 'Mechanical Block',
-    floor: 2,
-    room: 'MB204',
-    start_time: '10:00 AM',
-    end_time: '11:00 AM',
-    status: 'Ongoing',
-    lat: 12.9720,
-    lng: 77.5962
-  },
-  {
-    id: 'tt_8',
-    day: 'Friday',
-    subject: 'System Architecture Seminar',
-    subject_code: 'CS401',
-    class_name: 'CSE - IV Year',
-    building: 'AS Block',
-    floor: 2,
-    room: 'AS-202',
-    start_time: '02:00 PM',
-    end_time: '03:30 PM',
-    status: 'Upcoming',
-    lat: 12.9725,
-    lng: 77.5955
-  }
-];
-
-export const INITIAL_SUBSTITUTIONS = [
-  {
-    id: 'sub_101',
-    original_faculty_id: 'FAC-9402',
-    original_faculty_name: 'Dr. Gayathri Devi',
-    substitute_faculty_id: 'FAC-8120',
-    substitute_faculty_name: 'Prof. Kiruthika',
-    subject: 'Operating Systems (CS304)',
-    class_name: 'CSE - III Year (Sec B)',
-    date: '2026-08-04',
-    period: '10:00 AM - 11:00 AM',
-    room: 'MB204',
-    building: 'Mechanical Block',
-    reason: 'Official Duty (National AI Conference)',
-    status: 'Approved',
-    created_at: '2026-07-30'
-  },
-  {
-    id: 'sub_102',
-    original_faculty_id: 'FAC-9402',
-    original_faculty_name: 'Dr. Gayathri Devi',
-    substitute_faculty_id: null,
-    substitute_faculty_name: 'Unassigned',
-    subject: 'Database Management Systems (CS301)',
-    class_name: 'CSE - III Year (Sec A)',
-    date: '2026-08-06',
-    period: '09:00 AM - 10:00 AM',
-    room: 'SF303',
-    building: 'Sunflower Block',
-    reason: 'Academic Work / Curriculum Review',
-    status: 'Pending',
-    created_at: '2026-07-31'
-  }
-];
-
 export const FACULTY_EVENTS = [
   {
     id: 'evt_1',
@@ -262,24 +104,24 @@ export const FACULTY_NOTICES = [
 export const FACULTY_NOTIFICATIONS = [
   {
     id: 'n_1',
-    title: 'Substitute Request Approved',
-    message: 'Prof. Kiruthika was assigned as substitute for your OS class on Aug 4 in Mechanical Block.',
-    type: 'substitute',
+    title: 'Campus facility maintenance update',
+    message: 'The campus operations team is reviewing facility maintenance requests submitted this week.',
+    type: 'facility',
     read_status: false,
     created_at: '10 mins ago'
   },
   {
     id: 'n_2',
-    title: 'Department Meeting Reminder',
-    message: 'CSE Faculty Meeting begins at 3:00 PM today in AS Block Hall 2.',
-    type: 'meeting',
+    title: 'Campus event reminder',
+    message: 'A new campus event has been added. Visit Events & Meetings for details.',
+    type: 'event',
     read_status: false,
     created_at: '1 hour ago'
   },
   {
     id: 'n_3',
-    title: 'Venue Confirmed for AI Workshop',
-    message: 'IB Block Seminar Hall reserved for August 5th Workshop.',
+    title: 'Notice published',
+    message: 'A new campus notice is available in the faculty notices feed.',
     type: 'event',
     read_status: true,
     created_at: 'Yesterday'
@@ -396,26 +238,5 @@ export const ALL_FACULTY_MEMBERS = [
     avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&h=200&q=80',
     freeSlots: ['10:00 AM - 12:00 PM'],
     busySlots: ['02:00 PM - 04:00 PM']
-  }
-];
-
-export const INITIAL_ADMIN_NOTIFICATIONS = [
-  {
-    id: 'an_1',
-    title: 'New Faculty Substitution Request',
-    message: 'Dr. Gayathri Devi requested substitution for Database Management Systems (CS301) on 2026-08-06 (09:00 AM - 10:00 AM) in Sunflower Block.',
-    type: 'substitution_request',
-    request_id: 'sub_102',
-    read_status: false,
-    created_at: '2 hours ago'
-  },
-  {
-    id: 'an_2',
-    title: 'Substitution Approved & Arranged',
-    message: 'Prof. Kiruthika assigned as substitute for Dr. Gayathri Devi on 2026-08-04 (10:00 AM - 11:00 AM) in Mechanical Block.',
-    type: 'substitution_approved',
-    request_id: 'sub_101',
-    read_status: true,
-    created_at: 'Yesterday'
   }
 ];

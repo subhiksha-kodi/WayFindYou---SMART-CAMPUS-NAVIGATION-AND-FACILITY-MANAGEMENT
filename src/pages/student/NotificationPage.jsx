@@ -20,7 +20,7 @@ export const NotificationPage = () => {
     <AppLayout>
       <PageHeader
         title="Student Notifications & Alert Feed"
-        description="Stay updated with complaint progress, new notices, timetable changes, cafeteria tokens, and emergency broadcasts."
+        description="Stay updated with complaint progress, new notices, cafeteria tokens, and emergency broadcasts."
         breadcrumbs={[{ label: 'Notifications' }]}
       />
 

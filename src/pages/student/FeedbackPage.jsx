@@ -9,7 +9,6 @@ import { Badge } from '../../components/ui/Badge';
 import { useStudent } from '../../context/StudentContext';
 
 export const FeedbackCategories = [
-  { value: 'Classroom', label: 'Classroom Infrastructure' },
   { value: 'Cafeteria', label: 'Cafeteria & Food Quality' },
   { value: 'Library', label: 'Library Facilities' },
   { value: 'Cleanliness', label: 'Campus Cleanliness & Hygiene' },
@@ -20,7 +19,7 @@ export const FeedbackCategories = [
 export const FeedbackPage = () => {
   const { submitFeedback, feedbacks } = useStudent();
 
-  const [category, setCategory] = useState('Classroom');
+  const [category, setCategory] = useState('Cafeteria');
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
 
@@ -34,7 +33,7 @@ export const FeedbackPage = () => {
     <AppLayout>
       <PageHeader
         title="Campus Facility Feedback"
-        description="Rate campus services, classrooms, cafeteria, and facilities on a 1-5 star scale to help administration improve quality."
+        description="Rate campus services, cafeteria, and facilities on a 1-5 star scale to help administration improve quality."
         breadcrumbs={[{ label: 'Feedback' }]}
       />
 

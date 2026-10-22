@@ -11,27 +11,6 @@ export const INITIAL_STUDENT_DATA = {
   completedCourses: 12
 };
 
-export const MOCK_ATTENDANCE = {
-  overallPercentage: 91.5,
-  totalClasses: 160,
-  attendedClasses: 146,
-  subjectWise: [
-    { code: "CS301", name: "Data Structures & Algorithms", attended: 32, total: 35, percentage: 91.4, faculty: "Dr. Kumar" },
-    { code: "CS302", name: "Database Management Systems", attended: 28, total: 30, percentage: 93.3, faculty: "Prof. Anitha" },
-    { code: "CS303", name: "Operating Systems", attended: 26, total: 30, percentage: 86.7, faculty: "Dr. R. Sundar" },
-    { code: "CS304", name: "Python Programming Lab", attended: 20, total: 20, percentage: 100.0, faculty: "Prof. Vignesh" },
-    { code: "MA301", name: "Discrete Mathematics", attended: 40, total: 45, percentage: 88.9, faculty: "Dr. Meenakshi" }
-  ]
-};
-
-export const MOCK_TIMETABLE = [
-  { time: "09:00 AM - 10:00 AM", subject: "Database Management Systems", code: "CS302", room: "CS302", building: "Academic Block B", faculty: "Prof. Anitha", day: "Today" },
-  { time: "10:00 AM - 11:00 AM", subject: "Operating Systems", code: "CS303", room: "CS304", building: "Academic Block B", faculty: "Dr. R. Sundar", day: "Today" },
-  { time: "11:00 AM - 11:15 AM", subject: "Morning Break", code: "BREAK", room: "Student Lounge", building: "Academic Block B", faculty: "-", day: "Today" },
-  { time: "11:15 AM - 12:15 PM", subject: "Discrete Mathematics", code: "MA301", room: "CS201", building: "Academic Block A", faculty: "Dr. Meenakshi", day: "Today" },
-  { time: "01:15 PM - 03:15 PM", subject: "Python Programming Lab", code: "CS304", room: "Lab 3", building: "IT & Computing Wing", faculty: "Prof. Vignesh", day: "Today" }
-];
-
 export const MOCK_NOTICES = [
   {
     id: 1,

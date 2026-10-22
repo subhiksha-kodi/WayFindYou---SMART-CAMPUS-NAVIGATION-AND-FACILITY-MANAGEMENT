@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
-import { Bell, CheckCircle2, Check, Trash2, Clock, CalendarDays, UserCheck } from 'lucide-react';
+import { Bell, Check, Trash2 } from 'lucide-react';
 import { FacultyLayout } from '../../components/layout/FacultyLayout';
 import { PageHeader } from '../../components/layout/PageHeader';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import { useToast } from '../../context/ToastContext';
-import { useSubstitution } from '../../context/SubstitutionContext';
+import { FACULTY_NOTIFICATIONS } from '../../services/facultyData';
 
 export const FacultyNotificationsPage = () => {
   const { addToast } = useToast();
-  const { facultyNotifications, markFacultyNotificationRead, clearFacultyNotifications } = useSubstitution();
+  const [facultyNotifications, setFacultyNotifications] = useState(FACULTY_NOTIFICATIONS);
 
   const markAsRead = (id) => {
-    markFacultyNotificationRead(id);
+    setFacultyNotifications((notifications) => notifications.map((notification) => (
+      notification.id === id ? { ...notification, read_status: true } : notification
+    )));
     addToast('Marked notification as read', 'info');
   };
 
   const markAllAsRead = () => {
-    facultyNotifications.forEach((n) => markFacultyNotificationRead(n.id));
+    setFacultyNotifications((notifications) => notifications.map((notification) => ({ ...notification, read_status: true })));
     addToast('All notifications marked as read', 'success');
   };
 
   const clearAll = () => {
-    clearFacultyNotifications();
+    setFacultyNotifications([]);
     addToast('Notification feed cleared', 'info');
   };
 
@@ -72,13 +74,7 @@ export const FacultyNotificationsPage = () => {
               <CardContent className="p-4 flex items-start justify-between gap-4">
                 <div className="flex items-start gap-3">
                   <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-blue-600 shrink-0 mt-0.5 shadow-xs">
-                    {n.type === 'substitute' ? (
-                      <UserCheck className="w-4 h-4 text-emerald-600" />
-                    ) : n.type === 'meeting' ? (
-                      <CalendarDays className="w-4 h-4 text-purple-600" />
-                    ) : (
-                      <Bell className="w-4 h-4 text-blue-600" />
-                    )}
+                    <Bell className="w-4 h-4 text-blue-600" />
                   </div>
 
                   <div className="space-y-1">

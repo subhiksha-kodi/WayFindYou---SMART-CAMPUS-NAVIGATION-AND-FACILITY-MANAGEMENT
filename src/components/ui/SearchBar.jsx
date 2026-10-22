@@ -3,7 +3,7 @@ import { Search, MapPin, X } from 'lucide-react';
 import { Button } from './Button';
 
 export const SearchBar = ({
-  placeholder = "Search classrooms, buildings, facilities...",
+  placeholder = "Search buildings and facilities...",
   onSearch,
   className = '',
   size = 'lg',

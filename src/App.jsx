@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { RoleProvider, useRole } from './context/RoleContext';
 import { ToastProvider } from './context/ToastContext';
-import { SubstitutionProvider } from './context/SubstitutionContext';
 import { AdminProvider } from './context/AdminContext';
 import { StudentProvider } from './context/StudentContext';
 
@@ -167,15 +166,13 @@ export function App() {
   return (
     <RoleProvider>
       <ToastProvider>
-        <SubstitutionProvider>
-          <AdminProvider>
+        <AdminProvider>
             <StudentProvider>
               <Router>
                 <AppRoutes />
               </Router>
             </StudentProvider>
-          </AdminProvider>
-        </SubstitutionProvider>
+        </AdminProvider>
       </ToastProvider>
     </RoleProvider>
   );

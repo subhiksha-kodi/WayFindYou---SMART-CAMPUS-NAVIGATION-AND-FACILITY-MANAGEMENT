@@ -35,7 +35,7 @@ export const FacultyLoginPage = () => {
             <span className="text-2xl font-bold text-slate-900 tracking-tight">WayFindYou</span>
           </NavLink>
           <h2 className="text-xl font-extrabold text-slate-900">Faculty Portal Sign In</h2>
-          <p className="text-xs text-slate-500">Access your faculty schedule, classroom navigation & timetable</p>
+          <p className="text-xs text-slate-500">Access campus navigation, notices, events, and faculty services</p>
         </div>
 
         <Card className="shadow-md">

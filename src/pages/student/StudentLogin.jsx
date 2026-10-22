@@ -39,7 +39,7 @@ export const StudentLogin = () => {
             <span className="text-2xl font-bold text-slate-900 tracking-tight">WayFindYou</span>
           </div>
           <h2 className="text-xl font-bold text-slate-900">Student Portal Login</h2>
-          <p className="text-xs text-slate-500">Access your campus navigation, timetable, and student services</p>
+          <p className="text-xs text-slate-500">Access campus navigation, notices, events, and student services</p>
         </div>
 
         <Card className="shadow-md border border-slate-200">

@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import {
   INITIAL_STUDENT_DATA,
-  MOCK_ATTENDANCE,
-  MOCK_TIMETABLE,
   MOCK_NOTICES,
   MOCK_EVENTS,
   MOCK_CAFETERIA_MENU,
@@ -16,8 +14,6 @@ const StudentContext = createContext();
 
 export const StudentProvider = ({ children }) => {
   const [student, setStudent] = useState(INITIAL_STUDENT_DATA);
-  const [attendance, setAttendance] = useState(MOCK_ATTENDANCE);
-  const [timetable, setTimetable] = useState(MOCK_TIMETABLE);
   const [notices, setNotices] = useState(MOCK_NOTICES);
   const [events, setEvents] = useState(MOCK_EVENTS);
   const [eventRegistrations, setEventRegistrations] = useState([101]);
@@ -168,8 +164,6 @@ export const StudentProvider = ({ children }) => {
       value={{
         student,
         updateProfile,
-        attendance,
-        timetable,
         notices,
         events,
         eventRegistrations,
