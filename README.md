@@ -1,321 +1,212 @@
-# 🏫 WayFindYou
+# WayFindYou
 
-**Smart Campus Navigation & Facility Locator**
-*Bannari Amman Institute of Technology, Sathyamangalam*
+**Smart Campus Navigation and Facility Locator**
+**Bannari Amman Institute of Technology, Sathyamangalam**
 
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://reactjs.org) [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev) [![Three.js](https://img.shields.io/badge/Three.js-3D-black?style=flat-square&logo=three.js)](https://threejs.org) [![Leaflet](https://img.shields.io/badge/Leaflet-Map-199900?style=flat-square&logo=leaflet)](https://leafletjs.com) [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![Three.js](https://img.shields.io/badge/Three.js-3D-black?style=flat-square&logo=three.js)](https://threejs.org/)
+[![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900?style=flat-square&logo=leaflet)](https://leafletjs.com/)
 
-> Developed by **Team Velmora** ·
+> Developed by **Team Velmora**
 
----
+## Overview
 
-## 📌 Table of Contents
+WayFindYou is a React-based campus navigation and facility-management application. It helps students, faculty, visitors, and administrators find campus locations, explore interactive building maps, discover facilities, share notices and events, manage complaints, and respond to emergencies.
 
-| | Section |
-|---|---------|
-| 1 | [Project Overview](#-project-overview) |
-| 2 | [System Architecture](#-system-architecture) |
-| 3 | [Key Features](#-key-features) |
-| 4 | [UI Screenshots](#-ui-screenshots) |
-| 5 | [Tech Stack](#-tech-stack) |
-| 6 | [Project Structure](#-project-structure) |
-| 7 | [Setup & Installation](#-setup--installation) |
-| 8 | [User Roles](#-user-roles) |
-| 9 | [Emergency SOS](#-emergency-sos-system) |
-| 10 | [Team Velmora](#-team-velmora) |
+The current application focuses on campus operations and navigation. Academic scheduling, classroom allocation, subject management, attendance, faculty substitution, room booking, analytics, reports, audit logs, and system settings are not part of the active application.
 
----
+## Current Features
 
-## 🌟 Project Overview
+### Campus navigation
 
-WayFindYou is a smart campus navigation platform for **Bannari Amman Institute of Technology**.
-It combines outdoor map routing, 3D indoor navigation, voice commands, and a real-time emergency SOS system — all in one web application.
+- Leaflet-based campus map with building markers
+- Facility locator for campus services
+- Route and campus map management for administrators
+- Interactive 3D views for the AS, IB, and SF blocks
+- Voice-assisted navigation and text-to-speech directions
 
-**Who is it for?**
+### Student portal
 
-- 🧑‍🎓 **Students** — find classrooms, facilities, and get help in emergencies
-- 👨‍🏫 **Faculty** — navigate campus, manage schedules and venue bookings
-- 👩‍💼 **Admins** — manage users, rooms, complaints, and monitor SOS alerts
-- 🪪 **Visitors** — register campus visits, get digital passes, and navigate the campus
+- Student dashboard with campus-service shortcuts
+- Combined notices, updates, and campus events page
+- Combined complaint submission and complaint history page
+- Cafeteria information and token-related services
+- Feedback and notifications
+- Student profile and preferences
+- Emergency SOS with camera, microphone, recording, and location support
 
----
+### Faculty portal
 
-## 🏗️ System Architecture
+- Faculty dashboard
+- Campus map and facility navigation
+- Notices and campus events
+- Facility and operational notifications
+- Faculty profile
 
-<div align="center">
+### Admin portal
 
-![App Flowchart](docs/flowchart.png)
+- Operational dashboard
+- User, student, and faculty management
+- Facility management
+- Campus map and route management
+- Events and notices management
+- Visitor management
+- Notifications
+- Complaint monitoring
+- Feedback review
+- SOS monitoring and emergency operations
+- Administrator profile
 
-</div>
+### Visitor services
 
-```
-Presentation Layer   →   Student Portal | Faculty Portal | Admin Dashboard | Visitor Portal
-Navigation Engine    →   Outdoor Map    | 3D Indoor AR   | Voice Navigation
-Safety Layer         →   Emergency SOS  | MediaRecorder  | Admin Alert Monitor
-State Management     →   React Context  | LocalStorage   | JSON Data Stores
-```
+- Visitor registration
+- Visit requests and digital pass support
+- Campus navigation guidance
+- Facility discovery
+- Campus alerts
 
----
+## Application Routes
 
-## ✨ Key Features
+| Area | Main routes |
+|------|-------------|
+| Public | `/`, `/login`, `/register`, `/forgot-password`, `/map`, `/facilities`, `/voice-navigation` |
+| Student | `/student/dashboard`, `/student/notices`, `/student/complaints`, `/student/cafeteria`, `/student/feedback`, `/student/notifications`, `/student/emergency` |
+| Faculty | `/faculty/dashboard`, `/faculty/map`, `/faculty/notices`, `/faculty/events`, `/faculty/notifications`, `/faculty/profile` |
+| Admin | `/admin/dashboard`, `/admin/users`, `/admin/students`, `/admin/faculty`, `/admin/facilities`, `/admin/map`, `/admin/routes`, `/admin/events`, `/admin/notices`, `/admin/visitors`, `/admin/notifications`, `/admin/complaints`, `/admin/feedback`, `/admin/operations` |
+| Visitor | `/visitors` |
+| 3D building views | `/as`, `/ib`, `/sf` |
 
-<br>
-
-### 🗺️ Outdoor Campus Map
-- Live OpenStreetMap tiles via Leaflet.js
-- Clickable building markers with info popups
-- Road-following route planner (OSRM API)
-- GPS location detection
-
-<br>
-
-### 🏛️ 3D AR Indoor Navigation
-- Full Three.js 3D floor plan (29 rooms — AS, IB, SF Blocks)
-- Glowing corridor-following navigation path
-- Turn-by-turn direction panel
-- Orbit, pan, and zoom controls
-
-<br>
-
-### 🎙️ Voice Navigation
-- Speak room names to navigate ("Go to Full Stack Lab")
-- Text-to-speech turn-by-turn audio directions
-- Works on map and inside 3D block views
-
-<br>
-
-### 🆘 Emergency SOS
-- One-click SOS triggers live camera + microphone recording
-- MediaRecorder API captures video/webm
-- Alert dispatched to Admin with student credentials, location & video
-- Admin can replay the recording directly in the dashboard
-
-<br>
-
-### 🛠️ Admin Control Panel
-- Dashboard with live stats (students, faculty, complaints, SOS alerts)
-- Full CRUD for users, rooms, departments, timetables
-- Complaint tracking and resolution workflow
-- Analytics charts and audit logs
-
----
-
-## 📸 UI Screenshots
-
-<br>
-
-### 🏠 Student Dashboard
-
-![Dashboard](docs/screenshots/dashboard.png)
-
-*Quick-access tiles for Campus Map, Classroom Finder, Voice Navigation, Timetable, Cafeteria, Complaints and more*
-
-<br>
-
-### 🏛️ AS Block — 3D AR Navigation
-
-![3D Navigation](docs/screenshots/3d-ar-navigation.png)
-
-*Indoor AR pathfinding with turn-by-turn guide and Voice Assistant Navigation*
-
-<br>
-
-### 🍽️ Smart Cafeteria — Digital Token System
-
-![Cafeteria](docs/screenshots/cafeteria.png)
-
-*Live queue token system with today's menu, availability status and cafeteria hours*
-
-<br>
-
-### 🗺️ Campus Map & Routing
-
-![Campus Map](docs/screenshots/campus-map.png)
-
-<br>
-
-### 🆘 Emergency SOS — Video Recording
-
-![Emergency SOS](docs/screenshots/emergency-sos.png)
-
-<br>
-
-### 👩‍💼 Admin Control Panel
-
-<img width="1918" height="942" alt="Screenshot 2026-08-01 093006" src="https://github.com/user-attachments/assets/6d891418-df04-4d3b-94ad-c78cc1f84400" />
-
-
-Visitor Dashboard
-
-<img width="1918" height="972" alt="image" src="https://github.com/user-attachments/assets/9b4a8f41-1c9f-4224-8187-65cb99545aa2" />
-
----
-
-## 🛠️ Tech Stack
+## Technology Stack
 
 | Layer | Technology |
-|-------|-----------|
-| Framework | React 18 + Vite 5 |
-| 3D Graphics | Three.js · @react-three/fiber · @react-three/drei |
-| Map | Leaflet.js · React-Leaflet · OpenStreetMap |
-| Routing | OSRM API |
-| Voice | Web Speech API |
-| SOS Recording | MediaRecorder API |
+|-------|------------|
+| Frontend | React 18 |
+| Build tool | Vite 5 |
+| Routing | React Router 6 |
+| Styling | Tailwind CSS |
+| Maps | Leaflet, React-Leaflet, OpenStreetMap |
+| Routing service | OSRM API |
+| 3D navigation | Three.js, React Three Fiber, Drei |
+| Voice navigation | Web Speech API |
+| Emergency recording | MediaRecorder API |
 | Icons | Lucide React |
-| State | React Context API |
-| Storage | LocalStorage + JSON |
+| State management | React Context API |
+| Local data | LocalStorage and JSON data stores |
 
----
+## Project Structure
 
-## 📂 Project Structure
-
-```
-Campus-Navigation-and-Facility-Locator/
-│
-├── Campus-Navigation-and-Facility-Locator/    ← React App (Vite)
-│   └── src/
-│       ├── components/
-│       │   ├── ASBlockViewer.jsx              ← 3D AS Block
-│       │   ├── IBBlockViewer.jsx              ← 3D IB Block
-│       │   ├── SFBlockViewer.jsx              ← 3D SF Block
-│       │   ├── CampusMap.jsx                  ← Leaflet map
-│       │   └── VoiceNavigation.jsx            ← Voice commands
-│       ├── pages/
-│       │   ├── student/
-│       │   │   ├── StudentDashboard.jsx
-│       │   │   ├── StudentSOSPage.jsx         ← SOS + recording
-│       │   │   ├── StudentTimetablePage.jsx
-│       │   │   └── ComplaintPage.jsx
-│       │   └── admin/
-│       │       ├── AdminDashboard.jsx
-│       │       ├── AdminUserManagement.jsx
-│       │       ├── AdminRoomManagement.jsx
-│       │       └── AdminAnalyticsPage.jsx
-│       └── context/
-│           ├── StudentContext.jsx
-│           ├── AdminContext.jsx
-│           └── AuthContext.jsx
-│
+```text
+.
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── admin/
+│   │   ├── faculty/
+│   │   ├── layout/
+│   │   └── navigation/
+│   ├── context/
+│   │   ├── AdminContext.jsx
+│   │   ├── RoleContext.jsx
+│   │   └── StudentContext.jsx
+│   ├── data/
+│   ├── pages/
+│   │   ├── admin/
+│   │   ├── faculty/
+│   │   └── student/
+│   ├── services/
+│   ├── App.jsx
+│   └── main.jsx
 ├── docs/
-│   ├── flowchart.png
-│   └── screenshots/
-│
-├── TEAM.md
-├── README.md
-└── Software Requirements Specification (SRS).docx
+├── package.json
+├── vite.config.js
+└── README.md
 ```
 
----
+## Setup and Installation
 
-## ⚙️ Setup & Installation
+### Prerequisites
 
-**Prerequisites:** Node.js v18+, npm v9+, Git, Chrome/Edge browser
+- Node.js 18 or later
+- npm 9 or later
+- A modern browser such as Chrome or Edge
 
-<br>
-
-**Step 1 — Clone the repository**
+### Clone the repository
 
 ```bash
-git clone https://github.com/subhiksha-kodi/Campus-Navigation-and-Facility-Locator.git
-cd Campus-Navigation-and-Facility-Locator
+git clone https://github.com/subhiksha-kodi/WayFindYou---SMART-CAMPUS-NAVIGATION-AND-FACILITY-MANAGEMENT.git
+cd WayFindYou---SMART-CAMPUS-NAVIGATION-AND-FACILITY-MANAGEMENT
 ```
 
-**Step 2 — Install dependencies**
+### Install dependencies
 
 ```bash
-cd Campus-Navigation-and-Facility-Locator
 npm install
 ```
 
-**Step 3 — Start the development server**
+### Start the development server
 
 ```bash
 npm run dev
 ```
 
----
+The app is normally available at `http://127.0.0.1:3000/`.
 
-## 🔐 User Roles
+### Create a production build
 
-| Role | Portal | Access |
-|------|--------|--------|
-| 🧑‍🎓 Student | `/student/dashboard` | Dashboard · Campus Map · 3D Navigation · Voice Nav · Timetable · Attendance · Complaints · Notices · Cafeteria · SOS |
-| 👨‍🏫 Faculty | `/faculty/dashboard` | Dashboard · Timetable · Campus Map · Venue Booking · Substitution · Notices · Events |
-| 👩‍💼 Admin | `/admin/dashboard` | Everything above + Full Admin Panel (Users, Rooms, Timetables, Complaints, Analytics, Audit Logs) |
-| 🪪 Visitor | `/visitors` | Visitor Registration · Campus Visit Requests · Digital QR Pass · Campus Navigation Guide · Facility Locator · Campus Alerts |
+```bash
+npm run build
+```
 
-**Demo credentials** *(password: `password123` for all)*
+### Preview the production build
+
+```bash
+npm run preview
+```
+
+## Demo Accounts
+
+All demo accounts use the password `password123`.
 
 | Role | Email | Password |
 |------|-------|----------|
-| 🧑‍🎓 Student | `hariharan.std@campus.edu` | `password123` |
-| 👨‍🏫 Faculty | `hariharan@campus.edu` | `password123` |
-| 👩‍💼 Admin | `dean@campus.edu` | `password123` |
-| 🪪 Visitor | `sanjana.parent@gmail.com` | `password123` |
+| Student | `hariharan.std@campus.edu` | `password123` |
+| Faculty | `hariharan@campus.edu` | `password123` |
+| Admin | `dean@campus.edu` | `password123` |
+| Visitor | `sanjana.parent@gmail.com` | `password123` |
 
-> **How to log in:** Go to `/login`, select your role from the **Login Role (Portal Access)** dropdown, and click **Sign In to WayFindYou**. Credentials are auto-filled when you select a role.
+Open `/login`, select the required portal role, and sign in. The demo credentials are populated automatically when a role is selected.
 
----
+## Emergency SOS
 
-## 🆘 Emergency SOS System
+The student emergency flow supports:
 
-```
-Student presses [🔴 SOS Button]
-        ↓
-Browser requests Camera + Microphone
-        ↓
-Live preview shown  →  Recording starts (MediaRecorder)
-        ↓
-Student stops recording  →  video/webm blob created
-        ↓
-Alert dispatched to Admin:
-  · Student name, ID, department
-  · GPS location + timestamp
-  · Recorded video blob (playable)
-  · Custom emergency message
-        ↓
-Admin views alert + plays video in real-time
-```
+1. Starting an SOS request from the student portal.
+2. Requesting browser camera and microphone access.
+3. Recording an emergency video with the MediaRecorder API.
+4. Capturing the available location and emergency details.
+5. Sending the alert to the administrative emergency-monitoring view.
 
-**Campus Emergency Contacts**
+Browser permissions must be granted for camera, microphone, and location features to work.
 
-| Service | Number |
-|---------|--------|
-| 🔒 Campus Security | Internal Ext. |
-| 🏥 Medical Centre | Internal Ext. |
-| 🔥 Fire Emergency | 101 |
-| 🚓 Police | 100 |
-
----
-
-## 👥 Team Velmora
-
-> Bannari Amman Institute of Technology · CSE Department · 2024–2025
-
-| Role | Name | Modules |
-|------|------|---------|
-| 👑 Team Leader | **Sharmila M** | Admin panel · Auth · Facility management · Integration |
-| 👩‍💻 Member 1 | **Tabitha Merin Clitus** | Campus Map · 3D Navigation · IB/SF Blocks · Voice Nav |
-| 👩‍💻 Member 2 | **Subhiksha Kodibass** | Student Portal · Emergency SOS · Classroom Finder · UI/UX |
-
-See [TEAM.md](TEAM.md) for full details.
-
----
-
-## 📄 Documentation
+## Documentation
 
 | Document | Link |
 |----------|------|
-| Software Requirements Specification | [SRS.docx](Software%20Requirements%20Specification%20(SRS).docx) |
-| App Flowchart | [flowchart.png](docs/flowchart.png) |
-| Team Details | [TEAM.md](TEAM.md) |
+| App flowchart | [docs/flowchart.png](docs/flowchart.png) |
+| Team details | [TEAM.md](TEAM.md) |
+| Software requirements | [Software Requirements Specification (SRS).docx](Software%20Requirements%20Specification%20(SRS).docx) |
+
+## Team Velmora
+
+| Role | Name |
+|------|------|
+| Team Leader | **Sharmila M** |
+| Member | **Tabitha Merin Clitus** |
+| Member | **Subhiksha Kodibass** |
+
+See [TEAM.md](TEAM.md) for the complete contribution details.
 
 ---
 
-<div align="center">
-
-Made with ❤️ by **Team Velmora** · Bannari Amman Institute of Technology
-
-⭐ Star this repo if you found it helpful!
-
-</div>
+Made with care by **Team Velmora** at Bannari Amman Institute of Technology.
